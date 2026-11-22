@@ -17,15 +17,20 @@ public class MongoConnectionTest implements CommandLineRunner {
     @Override
     public void run(String... args) {
 
-        Document response = mongoTemplate.executeCommand(
-                new Document("ping", 1)
-        );
+        try {
+            Document response = mongoTemplate.executeCommand(
+                    new Document("ping", 1)
+            );
 
-        System.out.println("====================================");
-        System.out.println("       GAMEREST - MONGODB ATLAS");
-        System.out.println("====================================");
-        System.out.println("Respuesta: " + response);
-        System.out.println("CONEXION EXITOSA CON MONGODB ATLAS");
-        System.out.println("====================================");
+            System.out.println("==================================");
+            System.out.println("GAMEREST - CONEXION CON MONGODB");
+            System.out.println("Respuesta: " + response);
+            System.out.println("CONEXION EXITOSA");
+            System.out.println("==================================");
+
+        } catch (Exception e) {
+            System.out.println("ERROR AL CONECTAR CON MONGODB");
+            e.printStackTrace();
+        }
     }
 }
